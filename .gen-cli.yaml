@@ -1,13 +1,13 @@
 server:
   server_name: "email" # 服务名称
-  go_module: "letter" # go.mod 名称
+  go_module: "user" # go.mod 名称
   code_path: "./tmp" # 生成代码目录
   go_version: "1.19" # go 版本
 mysql:
-  addr: "localhost"
+  addr: "127.0.0.1"
   user: "root"
-  pwd: "wjlroot"
+  pwd: "root"
   port: "3306"
-  db: "letter" # 数据库名
-  table: "email" # 表名
+  db: "gogen" # 数据库名
+  table: "user" # 表名
   key: "id" # 表的主键id
