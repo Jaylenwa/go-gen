@@ -15,26 +15,26 @@ import (
 	"sync"
 )
 
-type TempSvcNameCamelLowerHttpHandler struct {
+type TempSvcNameCamelLowerHandler struct {
 	TempSvcNameCamelLowerService portDriver.TempSvcNameCaseCamelService
 }
 
 var (
-	httpTempSvcNameCaseCamelOnce sync.Once
-	httpTempSvcNameCaseCamelHand HttpRouterInterface
+	TempSvcNameCamelLowerOnce sync.Once
+	TempSvcNameCamelLowerHand RouterInterface
 )
 
-func NewHttpTempSvcNameCaseCamelHandler() HttpRouterInterface {
-	httpTempSvcNameCaseCamelOnce.Do(func() {
-		httpTempSvcNameCaseCamelHand = &TempSvcNameCamelLowerHttpHandler{
+func NewTempSvcNameCaseCamelHandler() RouterInterface {
+	TempSvcNameCamelLowerOnce.Do(func() {
+		TempSvcNameCamelLowerHand = &TempSvcNameCamelLowerHandler{
 			TempSvcNameCamelLowerService: service.NewTempSvcNameCaseCamelService(),
 		}
 	})
-	return httpTempSvcNameCaseCamelHand
+	return TempSvcNameCamelLowerHand
 }
 
 // RegisterRouterPublic 注册外部API
-func (h *TempSvcNameCamelLowerHttpHandler) RegisterRouterPublic(router *gin.RouterGroup) {
+func (h *TempSvcNameCamelLowerHandler) RegisterRouterPublic(router *gin.RouterGroup) {
 	router.GET("/TempSvcNameCaseSnake/:id", h.findTempSvcNameCaseCamelById) // 查询TempSvcNameCaseCamelById
 	router.GET("/TempSvcNameCaseSnake", h.findTempSvcNameCaseCamelList)       // 查询TempSvcNameCaseCamel列表
 	router.POST("/TempSvcNameCaseSnake", h.createTempSvcNameCaseCamel)        // 创建TempSvcNameCaseCamel
@@ -43,10 +43,10 @@ func (h *TempSvcNameCamelLowerHttpHandler) RegisterRouterPublic(router *gin.Rout
 }
 
 // RegisterRouterPrivate 注册内部API
-func (h *TempSvcNameCamelLowerHttpHandler) RegisterRouterPrivate(router *gin.RouterGroup) {
+func (h *TempSvcNameCamelLowerHandler) RegisterRouterPrivate(router *gin.RouterGroup) {
 }
 
-func (h *TempSvcNameCamelLowerHttpHandler) findTempSvcNameCaseCamelById(c *gin.Context) {
+func (h *TempSvcNameCamelLowerHandler) findTempSvcNameCaseCamelById(c *gin.Context) {
 
 	var req dto.FindTempSvcNameCaseCamelByIdReq
 
@@ -64,7 +64,7 @@ func (h *TempSvcNameCamelLowerHttpHandler) findTempSvcNameCaseCamelById(c *gin.C
 
 }
 
-func (h *TempSvcNameCamelLowerHttpHandler) findTempSvcNameCaseCamelList(c *gin.Context) {
+func (h *TempSvcNameCamelLowerHandler) findTempSvcNameCaseCamelList(c *gin.Context) {
 
 	var reqForm dto.GetTempSvcNameCaseCamelListReq
 
@@ -105,7 +105,7 @@ func (h *TempSvcNameCamelLowerHttpHandler) findTempSvcNameCaseCamelList(c *gin.C
 
 }
 
-func (h *TempSvcNameCamelLowerHttpHandler) createTempSvcNameCaseCamel(c *gin.Context) {
+func (h *TempSvcNameCamelLowerHandler) createTempSvcNameCaseCamel(c *gin.Context) {
 
 	var req dto.CreateTempSvcNameCaseCamelReq
 
@@ -132,7 +132,7 @@ func (h *TempSvcNameCamelLowerHttpHandler) createTempSvcNameCaseCamel(c *gin.Con
 	})
 }
 
-func (h *TempSvcNameCamelLowerHttpHandler) updateTempSvcNameCaseCamel(c *gin.Context) {
+func (h *TempSvcNameCamelLowerHandler) updateTempSvcNameCaseCamel(c *gin.Context) {
 
 	var req dto.UpdateTempSvcNameCaseCamelReq
 
@@ -161,7 +161,7 @@ func (h *TempSvcNameCamelLowerHttpHandler) updateTempSvcNameCaseCamel(c *gin.Con
 	c.Status(http.StatusNoContent)
 }
 
-func (h *TempSvcNameCamelLowerHttpHandler) delTempSvcNameCaseCamel(c *gin.Context) {
+func (h *TempSvcNameCamelLowerHandler) delTempSvcNameCaseCamel(c *gin.Context) {
 
 	var req dto.DelTempSvcNameCaseCamelReq
 

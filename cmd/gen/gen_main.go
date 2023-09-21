@@ -13,8 +13,9 @@ import (
 
 func GenMain(req GenReq) {
 	context := gstr.ReplaceByMap(TempMain, g.MapStrStr{
-		"TempImportPkg":        viper.Get("server.go_module").(string),
-		"TempSvcNameCaseCamel": GetJsonTagFromCase(req.TableName, "Camel"), // 表名 大驼峰
+		"TempImportPkg":         viper.Get("server.go_module").(string),
+		"TempSvcNameCaseCamel":  GetJsonTagFromCase(req.TableName, "CamelLower"), // 表名 大驼峰
+		"TempSvcNameCamelLower": GetJsonTagFromCase(req.TableName, "Camel"),
 	})
 
 	path := req.BaseDir + "/main.go"

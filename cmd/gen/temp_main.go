@@ -13,16 +13,15 @@ import (
 )
 
 type Server struct {
-	httpTempSvcNameCaseCamelHandler adapterDriver.HttpRouterInterface
+	TempSvcNameCaseCamelHandler adapterDriver.RouterInterface
 }
 
 func (s *Server) Start() {
 	go func() {
 		engine := gin.New()
-		// 注册路由 - 健康检查
-		routerHealth := engine.Group("/api/v1")
-		routerHealth.Use(middleware.ErrorHandlerMiddleware())
-		s.httpTempSvcNameCaseCamelHandler.RegisterRouterPublic(routerHealth)
+		routerGroup := engine.Group("/api/v1")
+		routerGroup.Use(middleware.ErrorHandlerMiddleware())
+		s.TempSvcNameCaseCamelHandler.RegisterRouterPublic(routerGroup)
 		url := fmt.Sprintf("%s:%d", global.GConfig.Project.Host, global.GConfig.Project.Port)
 		_ = engine.Run(url)
 	}()
@@ -31,7 +30,7 @@ func (s *Server) Start() {
 func main() {
 
 	s := &Server{
-		httpTempSvcNameCaseCamelHandler: adapterDriver.NewHttpTempSvcNameCaseCamelHandler(),
+		TempSvcNameCaseCamelHandler: adapterDriver.NewTempSvcNameCamelLowerHandler(),
 	}
 	s.Start()
 

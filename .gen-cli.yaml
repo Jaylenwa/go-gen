@@ -1,13 +1,24 @@
 server:
-  server_name: "email" # 服务名称
-  go_module: "letter" # go.mod 名称
-  code_path: "./tmp" # 生成代码目录
-  go_version: "1.19" # go 版本
+  # server name
+  server_name: "email"
+  # go.mod module path
+  go_module: "letter"
+  # code generation path
+  code_path: "./tmp"
+  # go version
+  go_version: "1.19"
 mysql:
-  addr: "localhost"
+  # addr
+  addr: "0.0.0.0"
+  # user
   user: "root"
+  # password
   pwd: "wjlroot"
+  # port
   port: "3306"
-  db: "letter" # 数据库名
-  table: "email" # 表名
-  key: "id" # 表的主键id
+  # db name
+  db: "letter"
+  # table name
+  table: "email"
+  # primary key
+  key: "id"
