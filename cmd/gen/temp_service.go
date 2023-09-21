@@ -36,7 +36,7 @@ func NewTempSvcNameCaseCamelService() portDriver.TempSvcNameCaseCamelService {
 
 }
 
-func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelById(ctx context.Context, id int64) (res dto.GetTempSvcNameCaseCamelByIdRsp, err error) {
+func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelById(ctx context.Context, id int64) (res *dto.GetTempSvcNameCaseCamelByIdRsp, err error) {
 	TempSvcNameCamelLowerPo, err := svc.TempSvcNameCamelLowerRepo.FindById(ctx, id)
 	if err != nil {
 		return
@@ -48,7 +48,7 @@ func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelById(ctx contex
 	return
 }
 
-func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelByQuery(ctx context.Context, queries []*query.Query) (res dto.GetTempSvcNameCaseCamelByQueryRsp, err error) {
+func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelByQuery(ctx context.Context, queries []*query.Query) (res *dto.GetTempSvcNameCaseCamelByQueryRsp, err error) {
 	TempSvcNameCamelLowerPo, err := svc.TempSvcNameCamelLowerRepo.FindByQuery(ctx, queries)
 
 	// PO_to_DO
@@ -57,11 +57,11 @@ func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelByQuery(ctx con
 	return
 }
 
-func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelList(ctx context.Context, filter map[string]interface{}, args ...interface{}) (total int64, res []dto.GetTempSvcNameCaseCamelListRsp, err error) {
+func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelList(ctx context.Context, filter map[string]interface{}, args ...interface{}) (total int64, res []*dto.GetTempSvcNameCaseCamelListRsp, err error) {
 	total, TempSvcNameCamelLowerList, err := svc.TempSvcNameCamelLowerRepo.FindList(ctx, filter, args...)
 
 	// POs_to_DOs
-	res = make([]dto.GetTempSvcNameCaseCamelListRsp, 0)
+	res = make([]*dto.GetTempSvcNameCaseCamelListRsp, 0)
 
 	for _, TempSvcNameCamelLower := range TempSvcNameCamelLowerList {
 		do := dto.GetTempSvcNameCaseCamelListRsp{}
@@ -71,13 +71,13 @@ func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelList(ctx contex
 			return
 		}
 
-		res = append(res, do)
+		res = append(res, &do)
 	}
 
 	return
 }
 
-func (svc *TempSvcNameCamelLowerService) CreateTempSvcNameCaseCamel(ctx context.Context, req dto.CreateTempSvcNameCaseCamelReq) (id int64, err error) {
+func (svc *TempSvcNameCamelLowerService) CreateTempSvcNameCaseCamel(ctx context.Context, req *dto.CreateTempSvcNameCaseCamelReq) (id int64, err error) {
 	var (
 		TempSvcNameCamelLowerPo po.TempSvcNameCaseCamel
 	)
@@ -88,12 +88,12 @@ func (svc *TempSvcNameCamelLowerService) CreateTempSvcNameCaseCamel(ctx context.
 		return
 	}
 
-	id, err = svc.TempSvcNameCamelLowerRepo.Insert(ctx, TempSvcNameCamelLowerPo)
+	id, err = svc.TempSvcNameCamelLowerRepo.Insert(ctx, &TempSvcNameCamelLowerPo)
 
 	return
 }
 
-func (svc *TempSvcNameCamelLowerService) UpdateTempSvcNameCaseCamel(ctx context.Context, id int64, req dto.UpdateTempSvcNameCaseCamelReq) (err error) {
+func (svc *TempSvcNameCamelLowerService) UpdateTempSvcNameCaseCamel(ctx context.Context, id int64, req *dto.UpdateTempSvcNameCaseCamelReq) (err error) {
 	var (
 		TempSvcNameCamelLowerPo po.TempSvcNameCaseCamel
 	)
@@ -104,7 +104,7 @@ func (svc *TempSvcNameCamelLowerService) UpdateTempSvcNameCaseCamel(ctx context.
 		return
 	}
 
-	err = svc.TempSvcNameCamelLowerRepo.Update(ctx, id, TempSvcNameCamelLowerPo)
+	err = svc.TempSvcNameCamelLowerRepo.Update(ctx, id, &TempSvcNameCamelLowerPo)
 
 	return
 }

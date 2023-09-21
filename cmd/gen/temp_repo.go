@@ -33,14 +33,14 @@ func NewTempSvcNameCaseCamelRepo() portDriven.TempSvcNameCaseCamelRepo {
 	return TempSvcNameCamelLowerRepoImpl
 }
 
-func (repo *TempSvcNameCamelLowerRepo) FindById(ctx context.Context, id int64) (TempSvcNameCamelLower po.TempSvcNameCaseCamel, err error) {
+func (repo *TempSvcNameCamelLowerRepo) FindById(ctx context.Context, id int64) (TempSvcNameCamelLower *po.TempSvcNameCaseCamel, err error) {
 	tx := repo.db.WithContext(ctx)
 
 	err = tx.Where("id = ?", id).First(&TempSvcNameCamelLower).Error
 	return
 }
 
-func (repo *TempSvcNameCamelLowerRepo) FindByQuery(ctx context.Context, queries []*query.Query) (TempSvcNameCamelLower po.TempSvcNameCaseCamel, err error) {
+func (repo *TempSvcNameCamelLowerRepo) FindByQuery(ctx context.Context, queries []*query.Query) (TempSvcNameCamelLower *po.TempSvcNameCaseCamel, err error) {
 	tx := repo.db.WithContext(ctx)
 
 	condition := query.GenerateQueryCondition(queries)
@@ -49,7 +49,7 @@ func (repo *TempSvcNameCamelLowerRepo) FindByQuery(ctx context.Context, queries 
 	return
 }
 
-func (repo *TempSvcNameCamelLowerRepo) FindList(ctx context.Context, filter map[string]interface{}, args ...interface{}) (total int64, res []po.TempSvcNameCaseCamel, err error) {
+func (repo *TempSvcNameCamelLowerRepo) FindList(ctx context.Context, filter map[string]interface{}, args ...interface{}) (total int64, res []*po.TempSvcNameCaseCamel, err error) {
 	tx := repo.db.WithContext(ctx)
 
 	limit := 10
@@ -81,7 +81,7 @@ func (repo *TempSvcNameCamelLowerRepo) FindList(ctx context.Context, filter map[
 	return
 }
 
-func (repo *TempSvcNameCamelLowerRepo) Insert(ctx context.Context, TempSvcNameCamelLower po.TempSvcNameCaseCamel) (id int64, err error) {
+func (repo *TempSvcNameCamelLowerRepo) Insert(ctx context.Context, TempSvcNameCamelLower *po.TempSvcNameCaseCamel) (id int64, err error) {
 	tx := repo.db.WithContext(ctx)
 
 	err = tx.Create(&TempSvcNameCamelLower).Error
@@ -93,7 +93,7 @@ func (repo *TempSvcNameCamelLowerRepo) Insert(ctx context.Context, TempSvcNameCa
 	return
 }
 
-func (repo *TempSvcNameCamelLowerRepo) Update(ctx context.Context, id int64, TempSvcNameCamelLower po.TempSvcNameCaseCamel) (err error) {
+func (repo *TempSvcNameCamelLowerRepo) Update(ctx context.Context, id int64, TempSvcNameCamelLower *po.TempSvcNameCaseCamel) (err error) {
 	tx := repo.db.WithContext(ctx)
 
 	err = tx.Model(&po.TempSvcNameCaseCamel{}).Where("id = ?", id).Updates(&TempSvcNameCamelLower).Error

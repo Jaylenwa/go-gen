@@ -120,7 +120,7 @@ func (h *TempSvcNameCamelLowerHandler) createTempSvcNameCaseCamel(c *gin.Context
 		return
 	}
 
-	id, err := h.TempSvcNameCamelLowerService.CreateTempSvcNameCaseCamel(c, req)
+	id, err := h.TempSvcNameCamelLowerService.CreateTempSvcNameCaseCamel(c, &req)
 	if err != nil {
 		_ = c.AbortWithError(http.StatusInternalServerError, err)
 		return
@@ -152,7 +152,7 @@ func (h *TempSvcNameCamelLowerHandler) updateTempSvcNameCaseCamel(c *gin.Context
 		return
 	}
 
-	err = h.TempSvcNameCamelLowerService.UpdateTempSvcNameCaseCamel(c, req.Id, req)
+	err = h.TempSvcNameCamelLowerService.UpdateTempSvcNameCaseCamel(c, req.Id, &req)
 	if err != nil {
 		_ = c.AbortWithError(http.StatusInternalServerError, err)
 		return
