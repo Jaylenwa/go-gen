@@ -40,28 +40,28 @@ func genUtilsQuery(req GenReq) {
 	}
 }
 
-func genUtilsStruct(req GenReq) {
+//func genUtilsStruct(req GenReq) {
+//
+//	str := "package _struct\n\nimport (\n\t\"encoding/json\"\n\t\"errors\"\n\t\"reflect\"\n)\n\n// CopyStruct 将src的值赋值到dst\nfunc CopyStruct(dst interface{}, src interface{}) (err error) {\n\n\tif dst == nil || src == nil {\n\t\terr = errors.New(\"CopyStruct: dst and src must not be nil\")\n\t\treturn\n\t}\n\n\tdstVal := reflect.ValueOf(dst)\n\n\tif dstVal.Kind() != reflect.Ptr {\n\t\terr = errors.New(\"CopyStruct: dst reflect kind need to be a pointer\")\n\t\treturn\n\t}\n\n\tif dstVal.IsNil() {\n\t\terr = errors.New(\"CopyStruct: dstVal.IsNil()\")\n\t\treturn\n\t}\n\n\tbys, err := json.Marshal(src)\n\tif err != nil {\n\t\treturn\n\t}\n\n\terr = json.Unmarshal(bys, dst)\n\n\treturn\n}"
+//	path := req.StructDir + "/struct.go"
+//	if err := gfile.PutContents(path, strings.TrimSpace(str)); err != nil {
+//		mlog.Fatalf("writing content to '%s' failed: %v", path, err)
+//	} else {
+//		utils.GoFmt(path)
+//		mlog.Print("generated:", path)
+//	}
+//}
 
-	str := "package _struct\n\nimport (\n\t\"encoding/json\"\n\t\"errors\"\n\t\"reflect\"\n)\n\n// CopyStruct 将src的值赋值到dst\nfunc CopyStruct(dst interface{}, src interface{}) (err error) {\n\n\tif dst == nil || src == nil {\n\t\terr = errors.New(\"CopyStruct: dst and src must not be nil\")\n\t\treturn\n\t}\n\n\tdstVal := reflect.ValueOf(dst)\n\n\tif dstVal.Kind() != reflect.Ptr {\n\t\terr = errors.New(\"CopyStruct: dst reflect kind need to be a pointer\")\n\t\treturn\n\t}\n\n\tif dstVal.IsNil() {\n\t\terr = errors.New(\"CopyStruct: dstVal.IsNil()\")\n\t\treturn\n\t}\n\n\tbys, err := json.Marshal(src)\n\tif err != nil {\n\t\treturn\n\t}\n\n\terr = json.Unmarshal(bys, dst)\n\n\treturn\n}"
-	path := req.StructDir + "/struct.go"
-	if err := gfile.PutContents(path, strings.TrimSpace(str)); err != nil {
-		mlog.Fatalf("writing content to '%s' failed: %v", path, err)
-	} else {
-		utils.GoFmt(path)
-		mlog.Print("generated:", path)
-	}
-}
-
-func genUtilsValidate(req GenReq) {
-	str := "package validate\n\nimport (\n\t\"github.com/go-playground/validator/v10\"\n\t\"github.com/pkg/errors\"\n\t\"reflect\"\n)\n\nvar validate *validator.Validate\n\nvar (\n\t// customDataTag is default data tag name\n\tcustomDataTag = \"json\"\n\t// customErrTag is default custom tag name\n\tcustomErrTag = \"err_info\"\n)\n\nfunc init() {\n\tvalidate = validator.New()\n\t// 注册自定义错误\n\tif err := validate.RegisterValidation(\"customVerification\", customVerification); err != nil {\n\t\tpanic(err)\n\t}\n}\n\n// Validate is validate a struct exposed fields\nfunc Validate(val interface{}) error {\n\terr := validate.Struct(val)\n\tif err == nil {\n\t\treturn nil\n\t}\n\n\tfor _, err := range err.(validator.ValidationErrors) {\n\t\treturn wrapErr(val, err)\n\t}\n\n\treturn nil\n}\n\n// wrapErr is wrap err\nfunc wrapErr(val interface{}, err validator.FieldError) error {\n\tt := reflect.TypeOf(val)\n\tif t.Kind() == reflect.Ptr {\n\t\tt = t.Elem()\n\t}\n\n\tf, ok := t.FieldByName(err.Field())\n\tif !ok {\n\t\treturn errors.Errorf(\"param %s must %s %s\", err.Field(), err.Tag(), err.Param())\n\t}\n\n\terrTag := f.Tag.Get(customErrTag)\n\tif errTag == \"\" {\n\t\treturn errors.Errorf(\"param %s must %s %s\", f.Tag.Get(customDataTag), err.Tag(), err.Param())\n\t}\n\n\treturn errors.Errorf(\"%s:%s\", f.Tag.Get(customDataTag), errTag)\n}\n\n// customVerification 自定义校验\nfunc customVerification(f validator.FieldLevel) bool {\n\n\t// do something...\n\n\treturn true\n}\n"
-	path := req.ValidateDir + "/validate.go"
-	if err := gfile.PutContents(path, strings.TrimSpace(str)); err != nil {
-		mlog.Fatalf("writing content to '%s' failed: %v", path, err)
-	} else {
-		utils.GoFmt(path)
-		mlog.Print("generated:", path)
-	}
-}
+//func genUtilsValidate(req GenReq) {
+//	str := "package validate\n\nimport (\n\t\"github.com/go-playground/validator/v10\"\n\t\"github.com/pkg/errors\"\n\t\"reflect\"\n)\n\nvar validate *validator.Validate\n\nvar (\n\t// customDataTag is default data tag name\n\tcustomDataTag = \"json\"\n\t// customErrTag is default custom tag name\n\tcustomErrTag = \"err_info\"\n)\n\nfunc init() {\n\tvalidate = validator.New()\n\t// 注册自定义错误\n\tif err := validate.RegisterValidation(\"customVerification\", customVerification); err != nil {\n\t\tpanic(err)\n\t}\n}\n\n// Validate is validate a struct exposed fields\nfunc Validate(val interface{}) error {\n\terr := validate.Struct(val)\n\tif err == nil {\n\t\treturn nil\n\t}\n\n\tfor _, err := range err.(validator.ValidationErrors) {\n\t\treturn wrapErr(val, err)\n\t}\n\n\treturn nil\n}\n\n// wrapErr is wrap err\nfunc wrapErr(val interface{}, err validator.FieldError) error {\n\tt := reflect.TypeOf(val)\n\tif t.Kind() == reflect.Ptr {\n\t\tt = t.Elem()\n\t}\n\n\tf, ok := t.FieldByName(err.Field())\n\tif !ok {\n\t\treturn errors.Errorf(\"param %s must %s %s\", err.Field(), err.Tag(), err.Param())\n\t}\n\n\terrTag := f.Tag.Get(customErrTag)\n\tif errTag == \"\" {\n\t\treturn errors.Errorf(\"param %s must %s %s\", f.Tag.Get(customDataTag), err.Tag(), err.Param())\n\t}\n\n\treturn errors.Errorf(\"%s:%s\", f.Tag.Get(customDataTag), errTag)\n}\n\n// customVerification 自定义校验\nfunc customVerification(f validator.FieldLevel) bool {\n\n\t// do something...\n\n\treturn true\n}\n"
+//	path := req.ValidateDir + "/validate.go"
+//	if err := gfile.PutContents(path, strings.TrimSpace(str)); err != nil {
+//		mlog.Fatalf("writing content to '%s' failed: %v", path, err)
+//	} else {
+//		utils.GoFmt(path)
+//		mlog.Print("generated:", path)
+//	}
+//}
 
 func genErrorHandler(req GenReq) {
 	str := "package middleware\n\nimport (\n\t\"net/http\"\n\n\t\"github.com/gin-gonic/gin\"\n)\n\nfunc ErrorHandlerMiddleware() gin.HandlerFunc {\n\treturn func(c *gin.Context) {\n\t\t// 错误处理\n\t\tdefer func() {\n\t\t\tfor _, err := range c.Errors {\n\t\t\t\tc.AbortWithStatusJSON(c.Writer.Status(), gin.H{\n\t\t\t\t\t\"code\":    c.Writer.Status(),\n\t\t\t\t\t\"message\": http.StatusText(c.Writer.Status()),\n\t\t\t\t\t\"cause\":   err.Error(),\n\t\t\t\t})\n\t\t\t\treturn\n\t\t\t}\n\t\t}()\n\t\tc.Writer.Header().Set(\"Content-Type\", \"application/json; charset=utf-8\")\n\t\tc.Next()\n\t}\n}"
