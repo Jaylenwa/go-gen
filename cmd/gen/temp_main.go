@@ -25,6 +25,16 @@ func (s *Server) Start() {
 		url := fmt.Sprintf("%s:%d", global.GConfig.Project.Host, global.GConfig.Project.Port)
 		_ = engine.Run(url)
 	}()
+
+	// 开启内部接口
+	//go func() {
+	//	engine := gin.New()
+	//	routerGroup := engine.Group("/api/v1")
+	//	routerGroup.Use(middleware.ErrorHandlerMiddleware())
+	//	s.payHandler.RegisterRouterPrivate(routerGroup)
+	//	url := fmt.Sprintf("%s:%d", global.GConfig.Project.Host, global.GConfig.Project.PortPri)
+	//	_ = engine.Run(url)
+	//}()
 }
 
 func main() {

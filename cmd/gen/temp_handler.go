@@ -72,6 +72,12 @@ func (h *TempSvcNameCamelLowerHandler) findTempSvcNameCaseCamelList(c *gin.Conte
 		return
 	}
 
+	err := validate.Validate(reqForm)
+	if err != nil {
+		_ = c.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
 	var filter map[string]interface{}
 	reqBytes, err := json.Marshal(&reqForm)
 	if err != nil {
@@ -107,9 +113,15 @@ func (h *TempSvcNameCamelLowerHandler) createTempSvcNameCaseCamel(c *gin.Context
 		return
 	}
 
+	err := validate.Validate(req)
+	if err != nil {
+		_ = c.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
 	id, err := h.TempSvcNameCamelLowerService.CreateTempSvcNameCaseCamel(c, &req)
 	if err != nil {
-		_ = c.AbortWithError(http.StatusInternalServerError, err)
+		_ = c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
 
@@ -133,9 +145,15 @@ func (h *TempSvcNameCamelLowerHandler) updateTempSvcNameCaseCamel(c *gin.Context
 		return
 	}
 
-	err := h.TempSvcNameCamelLowerService.UpdateTempSvcNameCaseCamel(c, req.Id, &req)
+	err := validate.Validate(req)
 	if err != nil {
-		_ = c.AbortWithError(http.StatusInternalServerError, err)
+		_ = c.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
+	err = h.TempSvcNameCamelLowerService.UpdateTempSvcNameCaseCamel(c, req.Id, &req)
+	if err != nil {
+		_ = c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
 

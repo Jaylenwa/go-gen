@@ -37,7 +37,7 @@ type GenReq struct {
 	QueryDir          string
 	HttpClientDir     string
 	//StructDir         string
-	//ValidateDir       string
+	ValidateDir   string
 	DtoDir        string
 	middlewareDir string
 	DrivenDin     string
@@ -70,7 +70,7 @@ func GenInit(srvName, tableName string) GenReq {
 		QueryDir:          baseDir + "/infra/utils/query/",
 		HttpClientDir:     baseDir + "/infra/utils/httpclient/",
 		//StructDir:         baseDir + "/infra/utils/struct/",
-		//ValidateDir:       baseDir + "/infra/utils/validate/",
+		ValidateDir:   baseDir + "/infra/utils/validate/",
 		middlewareDir: baseDir + "/infra/middleware/",
 		DtoDir:        baseDir + "/adapter/driver/dto/",
 		DrivenDin:     baseDir + "/port/driven",
