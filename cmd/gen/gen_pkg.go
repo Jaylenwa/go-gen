@@ -10,8 +10,8 @@ import (
 func GenPkg(req GenReq) {
 	genInitConfig(req)
 	genUtilsQuery(req)
-	genUtilsStruct(req)
-	genUtilsValidate(req)
+	//genUtilsStruct(req)
+	//genUtilsValidate(req)
 	genErrorHandler(req)
 	genRouter(req)
 }

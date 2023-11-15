@@ -35,14 +35,14 @@ type GenReq struct {
 	RepositoryPoDir   string
 	RepositoryImplDir string
 	QueryDir          string
-	StructDir         string
-	ValidateDir       string
-	DtoDir            string
-	middlewareDir     string
-	DrivenDin         string
-	DriverDir         string
-	HandlerDir        string
-	RouterDir         string
+	//StructDir         string
+	//ValidateDir       string
+	DtoDir        string
+	middlewareDir string
+	DrivenDin     string
+	DriverDir     string
+	HandlerDir    string
+	RouterDir     string
 
 	TableColumns []TableColumn
 }
@@ -67,14 +67,14 @@ func GenInit(srvName, tableName string) GenReq {
 		RepositoryPoDir:   baseDir + "/infra/po/",
 		RepositoryImplDir: baseDir + "/adapter/driven/",
 		QueryDir:          baseDir + "/infra/utils/query/",
-		StructDir:         baseDir + "/infra/utils/struct/",
-		ValidateDir:       baseDir + "/infra/utils/validate/",
-		middlewareDir:     baseDir + "/infra/middleware/",
-		DtoDir:            baseDir + "/adapter/driver/dto/",
-		DrivenDin:         baseDir + "/port/driven",
-		DriverDir:         baseDir + "/port/driver",
-		HandlerDir:        baseDir + "/adapter/driver/",
-		RouterDir:         baseDir + "/adapter/driver/",
-		TableColumns:      GetTableCol(tableName),
+		//StructDir:         baseDir + "/infra/utils/struct/",
+		//ValidateDir:       baseDir + "/infra/utils/validate/",
+		middlewareDir: baseDir + "/infra/middleware/",
+		DtoDir:        baseDir + "/adapter/driver/dto/",
+		DrivenDin:     baseDir + "/port/driven",
+		DriverDir:     baseDir + "/port/driver",
+		HandlerDir:    baseDir + "/adapter/driver/",
+		RouterDir:     baseDir + "/adapter/driver/",
+		TableColumns:  GetTableCol(tableName),
 	}
 }

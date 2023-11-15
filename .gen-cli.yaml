@@ -1,12 +1,12 @@
 server:
   # server name
-  server_name: "email"
+  server_name: "order"
   # go.mod module path
-  go_module: "letter"
+  go_module: "order"
   # code generation path
   code_path: "./tmp"
   # go version
-  go_version: "1.19"
+  go_version: "1.20"
 mysql:
   # addr
   addr: "0.0.0.0"
@@ -17,8 +17,8 @@ mysql:
   # port
   port: "3306"
   # db name
-  db: "letter"
+  db: "ord"
   # table name
-  table: "email"
+  table: "pay"
   # primary key
   key: "id"
