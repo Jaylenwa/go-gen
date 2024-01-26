@@ -9,10 +9,11 @@ import (
 	"TempImportPkg/adapter/driver/dto"
 	"TempImportPkg/infra/po"
 	"TempImportPkg/infra/utils/query"
-	"TempImportPkg/infra/utils/struct"
 	portDriven "TempImportPkg/port/driven"
 	portDriver "TempImportPkg/port/driver"
 	"sync"
+
+	"github.com/jinzhu/copier"
 )
 
 var (
@@ -43,7 +44,7 @@ func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelById(ctx contex
 	}
 
 	// PO_to_DO
-	err = _struct.CopyStruct(&res, TempSvcNameCamelLowerPo)
+	err = copier.Copy(&res, TempSvcNameCamelLowerPo)
 
 	return
 }
@@ -52,7 +53,7 @@ func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelByQuery(ctx con
 	TempSvcNameCamelLowerPo, err := svc.TempSvcNameCamelLowerRepo.FindByQuery(ctx, queries)
 
 	// PO_to_DO
-	err = _struct.CopyStruct(&res, TempSvcNameCamelLowerPo)
+	err = copier.Copy(&res, TempSvcNameCamelLowerPo)
 
 	return
 }
@@ -66,7 +67,7 @@ func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelList(ctx contex
 	for _, TempSvcNameCamelLower := range TempSvcNameCamelLowerList {
 		do := dto.GetTempSvcNameCaseCamelListRsp{}
 
-		err = _struct.CopyStruct(&do, TempSvcNameCamelLower)
+		err = copier.Copy(&do, TempSvcNameCamelLower)
 		if err != nil {
 			return
 		}
@@ -83,7 +84,7 @@ func (svc *TempSvcNameCamelLowerService) CreateTempSvcNameCaseCamel(ctx context.
 	)
 
 	// DO_to_PO
-	err = _struct.CopyStruct(&TempSvcNameCamelLowerPo, req)
+	err = copier.Copy(&TempSvcNameCamelLowerPo, req)
 	if err != nil {
 		return
 	}
@@ -99,7 +100,7 @@ func (svc *TempSvcNameCamelLowerService) UpdateTempSvcNameCaseCamel(ctx context.
 	)
 
 	// DO_to_PO
-	err = _struct.CopyStruct(&TempSvcNameCamelLowerPo, req)
+	err = copier.Copy(&TempSvcNameCamelLowerPo, req)
 	if err != nil {
 		return
 	}

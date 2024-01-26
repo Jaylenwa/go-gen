@@ -73,7 +73,7 @@ func GenInit(srvName, tableName string) GenReq {
 		DtoDir:            baseDir + "/adapter/driver/dto/",
 		DrivenDin:         baseDir + "/port/driven",
 		DriverDir:         baseDir + "/port/driver",
-		HandlerDir:        baseDir + "/adapter/driver/",
+		HandlerDir:        baseDir + "/adapter/driver/handler/",
 		RouterDir:         baseDir + "/adapter/driver/",
 		TableColumns:      GetTableCol(tableName),
 	}

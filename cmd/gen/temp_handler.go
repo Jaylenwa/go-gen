@@ -6,6 +6,7 @@ package driver
 import (
 	"encoding/json"
 	"fmt"
+	"TempImportPkg/adapter/driver"
 	"TempImportPkg/adapter/driver/dto"
 	"TempImportPkg/domain/service"
 	"TempImportPkg/infra/utils/validate"
@@ -21,10 +22,10 @@ type TempSvcNameCamelLowerHttpHandler struct {
 
 var (
 	httpTempSvcNameCaseCamelOnce sync.Once
-	httpTempSvcNameCaseCamelHand HttpRouterInterface
+	httpTempSvcNameCaseCamelHand driver.HttpRouterInterface
 )
 
-func NewHttpTempSvcNameCaseCamelHandler() HttpRouterInterface {
+func NewHttpTempSvcNameCaseCamelHandler() driver.HttpRouterInterface {
 	httpTempSvcNameCaseCamelOnce.Do(func() {
 		httpTempSvcNameCaseCamelHand = &TempSvcNameCamelLowerHttpHandler{
 			TempSvcNameCamelLowerService: service.NewTempSvcNameCaseCamelService(),

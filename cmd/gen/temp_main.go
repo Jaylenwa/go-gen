@@ -5,7 +5,8 @@ package main
 
 import (
 	"fmt"
-	adapterDriver "TempImportPkg/adapter/driver"
+	router "TempImportPkg/adapter/driver"
+	adapterDriver "TempImportPkg/adapter/driver/handler"
 	_ "TempImportPkg/boot"
 	"TempImportPkg/global"
 	"TempImportPkg/infra/middleware"
@@ -13,7 +14,7 @@ import (
 )
 
 type Server struct {
-	httpTempSvcNameCaseCamelHandler adapterDriver.HttpRouterInterface
+	httpTempSvcNameCaseCamelHandler router.HttpRouterInterface
 }
 
 func (s *Server) Start() {
