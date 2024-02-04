@@ -71,4 +71,6 @@ func CreateDir(req GenReq) {
 	_ = os.MkdirAll(req.middlewareDir, os.ModePerm)
 	_ = os.MkdirAll(req.DriverDir, os.ModePerm)
 	_ = os.MkdirAll(req.DrivenDin, os.ModePerm)
+	_ = os.MkdirAll(req.ConcurrentMap, os.ModePerm)
+
 }

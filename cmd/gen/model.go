@@ -41,6 +41,7 @@ type GenReq struct {
 	DriverDir         string
 	HandlerDir        string
 	RouterDir         string
+	ConcurrentMap     string
 
 	TableColumns []TableColumn
 }
@@ -71,6 +72,7 @@ func GenInit(srvName, tableName string) GenReq {
 		DriverDir:         baseDir + "/port/driver",
 		HandlerDir:        baseDir + "/adapter/driver/handler/",
 		RouterDir:         baseDir + "/adapter/driver/",
+		ConcurrentMap:     baseDir + "/infra/utils/cmap/",
 		TableColumns:      GetTableCol(tableName),
 	}
 }
