@@ -9,7 +9,7 @@ import (
 	"TempImportPkg/adapter/driver/dto"
 )
 
-// go:generate mockgen -source=./svc_TempSvcNameCaseSnake.go -destination ./mock/svc_TempSvcNameCaseSnake.go -package mock
+//go:generate mockgen -source=./svc_TempSvcNameCaseSnake.go -destination ./mock/svc_TempSvcNameCaseSnake.go -package mock
 type TempSvcNameCaseCamelService interface {
 	FindTempSvcNameCaseCamelById(ctx context.Context, id int64) (res dto.GetTempSvcNameCaseCamelByIdRsp, err error)
 	FindTempSvcNameCaseCamelList(ctx context.Context, filter map[string]interface{}, args ...interface{}) (total int64, res []dto.GetTempSvcNameCaseCamelListRsp, err error)

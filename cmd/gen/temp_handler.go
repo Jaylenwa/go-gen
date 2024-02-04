@@ -9,7 +9,6 @@ import (
 	"TempImportPkg/adapter/driver"
 	"TempImportPkg/adapter/driver/dto"
 	"TempImportPkg/domain/service"
-	"TempImportPkg/infra/utils/validate"
 	portDriver "TempImportPkg/port/driver"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -74,12 +73,6 @@ func (h *TempSvcNameCamelLowerHttpHandler) findTempSvcNameCaseCamelList(c *gin.C
 		return
 	}
 
-	err := validate.Validate(reqForm)
-	if err != nil {
-		_ = c.AbortWithError(http.StatusInternalServerError, err)
-		return
-	}
-
 	var filter map[string]interface{}
 	reqBytes, err := json.Marshal(&reqForm)
 	if err != nil {
@@ -115,12 +108,6 @@ func (h *TempSvcNameCamelLowerHttpHandler) createTempSvcNameCaseCamel(c *gin.Con
 		return
 	}
 
-	err := validate.Validate(req)
-	if err != nil {
-		_ = c.AbortWithError(http.StatusInternalServerError, err)
-		return
-	}
-
 	id, err := h.TempSvcNameCamelLowerService.CreateTempSvcNameCaseCamel(c, req)
 	if err != nil {
 		_ = c.AbortWithError(http.StatusInternalServerError, err)
@@ -147,13 +134,7 @@ func (h *TempSvcNameCamelLowerHttpHandler) updateTempSvcNameCaseCamel(c *gin.Con
 		return
 	}
 
-	err := validate.Validate(req)
-	if err != nil {
-		_ = c.AbortWithError(http.StatusInternalServerError, err)
-		return
-	}
-
-	err = h.TempSvcNameCamelLowerService.UpdateTempSvcNameCaseCamel(c, req.Id, req)
+	err := h.TempSvcNameCamelLowerService.UpdateTempSvcNameCaseCamel(c, req.Id, req)
 	if err != nil {
 		_ = c.AbortWithError(http.StatusInternalServerError, err)
 		return

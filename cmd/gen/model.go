@@ -35,8 +35,6 @@ type GenReq struct {
 	RepositoryPoDir   string
 	RepositoryImplDir string
 	QueryDir          string
-	StructDir         string
-	ValidateDir       string
 	DtoDir            string
 	middlewareDir     string
 	DrivenDin         string
@@ -67,8 +65,6 @@ func GenInit(srvName, tableName string) GenReq {
 		RepositoryPoDir:   baseDir + "/infra/po/",
 		RepositoryImplDir: baseDir + "/adapter/driven/",
 		QueryDir:          baseDir + "/infra/utils/query/",
-		StructDir:         baseDir + "/infra/utils/struct/",
-		ValidateDir:       baseDir + "/infra/utils/validate/",
 		middlewareDir:     baseDir + "/infra/middleware/",
 		DtoDir:            baseDir + "/adapter/driver/dto/",
 		DrivenDin:         baseDir + "/port/driven",
