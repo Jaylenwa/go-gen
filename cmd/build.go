@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"gencode/cmd/build"
+
 	"github.com/gogf/gf-cli/v2/library/mlog"
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/spf13/cobra"
@@ -36,13 +37,13 @@ func init() {
 func helpBuild() {
 	mlog.Print(gstr.TrimLeft(`
 USAGE
-    go-ddd-cli build [OPTION]
+    gencode build [OPTION]
 
 ARGUMENT
     OPTION
 	-n	output file name
 
 EXAMPLES
-    go-ddd-cli build main.go -n main
+    gencode build main.go -n main
 `))
 }

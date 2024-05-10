@@ -15,7 +15,7 @@ func Install() {
 
 	switch runtime.GOOS {
 	case "windows":
-		src = "./go-ddd-cli.exe"
+		src = "./gencode.exe"
 		dst = `C:\Program Files` + src
 		if goroot != "" && len(goroot) > 0 {
 			dst = goroot + "/bin" + src
@@ -23,7 +23,7 @@ func Install() {
 		_, _ = util.Copy(src, dst)
 
 	default:
-		src = "go-ddd-cli"
+		src = "gencode"
 		dst = `/usr/local/bin/` + src
 		if goroot != "" && len(goroot) > 0 {
 			dst = goroot + "/bin/" + src

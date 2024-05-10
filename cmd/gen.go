@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"gencode/cmd/gen"
+
 	"github.com/gogf/gf-cli/v2/library/mlog"
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/spf13/cobra"
@@ -47,19 +48,19 @@ func init() {
 func help() {
 	mlog.Print(gstr.TrimLeft(`
 USAGE
-    go-ddd-cli gen [OPTION]
+    gencode gen [OPTION]
 
 ARGUMENT
     OPTION
-	-a	Enter MySQL addr 
-	-u	Enter MySQL user 
-	-pwd	Enter MySQL password 
-	-p	Enter MySQL port 
-	-d	Enter MySQL database 
-	-t	Enter MySQL table 
+	-a	Enter MySQL addr
+	-u	Enter MySQL user
+	-pwd	Enter MySQL password
+	-p	Enter MySQL port
+	-d	Enter MySQL database
+	-t	Enter MySQL table
 	-s	Enter project server name
 
 EXAMPLES
-    go-ddd-cli gen -a 127.0.0.1 -u root -pwd root -p 3306 -d dbName -t tableName -s microName
+    gencode gen -a 127.0.0.1 -u root -pwd root -p 3306 -d dbName -t tableName -s microName
 `))
 }

@@ -12,7 +12,7 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "go-ddd-cli",
+	Use:   "gencode",
 	Short: "",
 	Long:  ``,
 	// Uncomment the following line if your bare application
@@ -50,10 +50,10 @@ func initConfig() {
 		home, err := os.UserHomeDir()
 		cobra.CheckErr(err)
 
-		// Search config in home directory with name ".go-ddd-cli" (without extension).
+		// Search config in home directory with name ".gencode" (without extension).
 		viper.AddConfigPath(home)
 		viper.SetConfigType("yaml")
-		viper.SetConfigName(".go-ddd-cli")
+		viper.SetConfigName(".gencode")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
