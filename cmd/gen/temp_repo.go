@@ -7,7 +7,6 @@ import (
 	"context"
 	"TempImportPkg/global"
 	"TempImportPkg/infra/po"
-	"TempImportPkg/infra/utils/query"
 	portDriven "TempImportPkg/port/driven"
 	"gorm.io/gorm"
 	"sync"
@@ -40,12 +39,17 @@ func (repo *TempSvcNameCamelLowerRepo) FindById(ctx context.Context, id int64) (
 	return
 }
 
-func (repo *TempSvcNameCamelLowerRepo) FindByQuery(ctx context.Context, queries []*query.Query) (TempSvcNameCamelLower po.TempSvcNameCaseCamel, err error) {
+func (repo *TempSvcNameCamelLowerRepo) FindByQuery(ctx context.Context, filter map[string]interface{}, args ...interface{}) (res po.TempSvcNameCaseCamel, err error) {
 	tx := repo.db.WithContext(ctx)
 
-	condition := query.GenerateQueryCondition(queries)
+	dbQuery := tx.Model(&po.TempSvcNameCaseCamel{}).Where(filter)
+	if len(args) >= 2 {
+		dbQuery = dbQuery.Where(args[0], args[1:]...)
+	} else if len(args) >= 1 {
+		dbQuery = dbQuery.Where(args[0])
+	}
 
-	err = tx.Where(condition).First(&TempSvcNameCamelLower).Error
+	err = dbQuery.First(&res).Error
 	return
 }
 
@@ -55,19 +59,17 @@ func (repo *TempSvcNameCamelLowerRepo) FindList(ctx context.Context, filter map[
 	limit := 10
 	offset := 0
 
-	condition := make(map[string]interface{})
-
-	for k, v := range filter {
-		if k == "limit" {
-			limit = int(v.(float64))
-		} else if k == "offset" {
-			offset = int(v.(float64))
-		} else {
-			condition[k] = v
-		}
+	if v, ok := filter["limit"]; ok {
+		limit = int(v.(float64))
+		delete(filter, "limit")
 	}
 
-	dbQuery := tx.Model(&po.TempSvcNameCaseCamel{}).Where(condition)
+	if v, ok := filter["offset"]; ok {
+		offset = int(v.(float64))
+		delete(filter, "offset")
+	}
+
+	dbQuery := tx.Model(&po.TempSvcNameCaseCamel{}).Where(filter)
 
 	if len(args) >= 2 {
 		dbQuery = dbQuery.Where(args[0], args[1:]...)

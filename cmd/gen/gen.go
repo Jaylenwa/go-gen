@@ -66,7 +66,7 @@ func CreateDir(req GenReq) {
 	_ = os.MkdirAll(req.MysqlDir, os.ModePerm)
 	_ = os.MkdirAll(req.RepositoryPoDir, os.ModePerm)
 	_ = os.MkdirAll(req.RepositoryImplDir, os.ModePerm)
-	_ = os.MkdirAll(req.QueryDir, os.ModePerm)
+	// _ = os.MkdirAll(req.QueryDir, os.ModePerm)
 	_ = os.MkdirAll(req.DtoDir, os.ModePerm)
 	_ = os.MkdirAll(req.middlewareDir, os.ModePerm)
 	_ = os.MkdirAll(req.DriverDir, os.ModePerm)

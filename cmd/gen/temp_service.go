@@ -8,7 +8,6 @@ import (
 	"TempImportPkg/adapter/driven"
 	"TempImportPkg/adapter/driver/dto"
 	"TempImportPkg/infra/po"
-	"TempImportPkg/infra/utils/query"
 	portDriven "TempImportPkg/port/driven"
 	portDriver "TempImportPkg/port/driver"
 	"sync"
@@ -42,15 +41,6 @@ func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelById(ctx contex
 	if err != nil {
 		return
 	}
-
-	// PO_to_DO
-	err = copier.Copy(&res, TempSvcNameCamelLowerPo)
-
-	return
-}
-
-func (svc *TempSvcNameCamelLowerService) FindTempSvcNameCaseCamelByQuery(ctx context.Context, queries []*query.Query) (res dto.GetTempSvcNameCaseCamelByQueryRsp, err error) {
-	TempSvcNameCamelLowerPo, err := svc.TempSvcNameCamelLowerRepo.FindByQuery(ctx, queries)
 
 	// PO_to_DO
 	err = copier.Copy(&res, TempSvcNameCamelLowerPo)
