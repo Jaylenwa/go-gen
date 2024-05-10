@@ -83,6 +83,20 @@ func (repo *TempSvcNameCamelLowerRepo) FindList(ctx context.Context, filter map[
 	return
 }
 
+func (repo *TempSvcNameCamelLowerRepo) Count(ctx context.Context, filter map[string]interface{}, args ...interface{}) (total int64, err error) {
+	tx := repo.db.WithContext(ctx)
+
+	dbQuery := tx.Model(&po.TempSvcNameCaseCamel{}).Where(filter)
+	if len(args) >= 2 {
+		dbQuery = dbQuery.Where(args[0], args[1:]...)
+	} else if len(args) >= 1 {
+		dbQuery = dbQuery.Where(args[0])
+	}
+
+	err = dbQuery.Count(&total).Error
+	return
+}
+
 func (repo *TempSvcNameCamelLowerRepo) Insert(ctx context.Context, TempSvcNameCamelLower po.TempSvcNameCaseCamel) (id int64, err error) {
 	tx := repo.db.WithContext(ctx)
 
