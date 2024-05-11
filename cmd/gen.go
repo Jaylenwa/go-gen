@@ -19,10 +19,6 @@ var genCmd = &cobra.Command{
 	Short: "automatically generate go files for ORM model, service, repository, handler",
 	Long:  `automatically generate go files for ORM model, service, repository, handler`,
 	Run: func(cmd *cobra.Command, args []string) {
-		println(1)
-		i := viper.Get("server.go_version")
-		println(i.(string))
-		println(2)
 		addr = viper.Get("mysql.addr").(string)
 		user = viper.Get("mysql.user").(string)
 		pwd = viper.Get("mysql.pwd").(string)
