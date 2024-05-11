@@ -5,7 +5,6 @@ import (
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
 	"time"
 
@@ -28,12 +27,6 @@ func InitDB(host, port, user, password, dbName string) {
 		NamingStrategy: schema.NamingStrategy{
 			SingularTable: true, // 使用单数表名
 		},
-	}
-	cfg = &gorm.Config{
-		NamingStrategy: schema.NamingStrategy{
-			SingularTable: true, // 使用单数表名
-		},
-		Logger: logger.Default.LogMode(logger.Info), // 打印SQL语句
 	}
 	db, err := gorm.Open(mysql.Open(dsn), cfg)
 	if err != nil {
