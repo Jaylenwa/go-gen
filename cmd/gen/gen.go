@@ -1,9 +1,10 @@
 package gen
 
 import (
-	"gencode/util"
-	"github.com/gogf/gf-cli/v2/library/mlog"
+	"gogen/util"
 	"os"
+
+	"github.com/gogf/gf-cli/v2/library/mlog"
 )
 
 func Run(host, user, password, port, db, table, serverName string) {

@@ -1,12 +1,25 @@
-## 功能：
+## 介绍
 一键搭建项目，自动化生成代码，大幅度提高开发效率，减少CRUD的重复工作
 
-- 连接数据库
-- 指定数据库及数据库表
-- 生成代码框架及对应数据库表的CRUD代码，一键搭建项目
+## 使用方法
 
-## Command
+前置条件
+
+配置 `.gen-cli.yaml`
+
+配置内容见文件注释
+
+### 1、源码编译使用
 ```shell
-.\gencode.exe --config .gen-cli.yaml gen
-go run main.go  --config .gen-cli.yaml gen
+go run main.go gen --config .gen-cli.yaml
+```
+
+### 2、二进制文件使用
+```shell
+# 生成可执行文件
+go build .
+# windows下执行
+.\gogen.exe gen --config .gen-cli.yaml gen
+# linux下执行
+./gogen --config gen .gen-cli.yaml gen
 ```

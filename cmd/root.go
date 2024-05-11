@@ -12,7 +12,7 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "gencode",
+	Use:   "gogen",
 	Short: "",
 	Long:  ``,
 	// Uncomment the following line if your bare application
@@ -50,10 +50,10 @@ func initConfig() {
 		home, err := os.UserHomeDir()
 		cobra.CheckErr(err)
 
-		// Search config in home directory with name ".gencode" (without extension).
+		// Search config in home directory with name ".gen-cli" (without extension).
 		viper.AddConfigPath(home)
 		viper.SetConfigType("yaml")
-		viper.SetConfigName(".gencode")
+		viper.SetConfigName(".gen-cli")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match

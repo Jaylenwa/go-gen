@@ -1,8 +1,8 @@
 server:
-  # 服务名称
-  server_name: "user"
-  # go.mod名称
-  go_module: "user"
+  # 服务名称【一般和表名相同】
+  server_name: "test"
+  # go.mod 模块名称
+  go_module: "test"
   # 自动化代码输出目录
   code_path: "./tmp"
   # go 版本
@@ -15,10 +15,10 @@ mysql:
   # 数据库用户
   user: "root"
   # 数据库用户密码
-  pwd: "wjlroot"
+  pwd: "pwd"
   # 数据库
-  db: "user"
+  db: "test"
   # 数据库表名
-  table: "user"
+  table: "test"
   # 主键
   key: "id"

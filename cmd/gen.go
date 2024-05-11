@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"gencode/cmd/gen"
+	"gogen/cmd/gen"
 
 	"github.com/gogf/gf-cli/v2/library/mlog"
 	"github.com/gogf/gf/v2/text/gstr"
@@ -48,7 +48,7 @@ func init() {
 func help() {
 	mlog.Print(gstr.TrimLeft(`
 USAGE
-    gencode gen [OPTION]
+    gogen gen [OPTION]
 
 ARGUMENT
     OPTION
@@ -61,6 +61,6 @@ ARGUMENT
 	-s	Enter project server name
 
 EXAMPLES
-    gencode gen -a 127.0.0.1 -u root -pwd root -p 3306 -d dbName -t tableName -s microName
+    gogen gen -a 127.0.0.1 -u root -pwd root -p 3306 -d dbName -t tableName -s serverName
 `))
 }

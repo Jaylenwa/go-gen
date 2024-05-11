@@ -1,6 +1,6 @@
 package main
 
-import "gencode/cmd"
+import "gogen/cmd"
 
 func main() {
 	cmd.Execute()
