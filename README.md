@@ -19,7 +19,7 @@ go run main.go gen --config .gen-cli.yaml
 # 生成可执行文件
 go build .
 # windows下执行
-.\gogen.exe gen --config .gen-cli.yaml gen
+.\gogen.exe gen --config .gen-cli.yaml
 # linux下执行
-./gogen --config gen .gen-cli.yaml gen
+./gogen --config gen .gen-cli.yaml
 ```
