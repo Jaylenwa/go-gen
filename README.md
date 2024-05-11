@@ -17,13 +17,12 @@ go run main.go gen --config .gen-cli.yaml
 ```
 
 ### 2、二进制文件使用
+生成可执行文件`go build .`
+
+需要结合配置文件一起使用，配置文件变量值及配置文件名称可自定义
 ```shell
-# 生成可执行文件
-go build .
-# windows下执行
-.\gogen.exe gen --config .gen-cli.yaml
 # linux下执行
-./gogen --config gen .gen-cli.yaml
+[可执行文件] gen --config .gen-cli.yaml
 ```
 
 ### 3、使用命令行（推荐）
