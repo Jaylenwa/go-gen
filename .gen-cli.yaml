@@ -1,5 +1,6 @@
 server:
-  # 服务名称【一般和表名相同】
+  # 服务名称
+  # 例如表为用户表 服务名为user
   server_name: "test"
   # go.mod 模块名称
   go_module: "test"
