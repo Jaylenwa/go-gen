@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	addr, user, pwd, port, db, table, serverName, goModule, goVersion, codePath string
+	addr, user, pwd, port, db, table, key, serverName, goModule, goVersion, codePath string
 )
 
 // genCmd represents the gen command
@@ -30,6 +30,18 @@ var genCmd = &cobra.Command{
 			help()
 			return
 		}
+		// println(
+		// 	viper.Get("mysql.addr").(string),
+		// 	viper.Get("mysql.user").(string),
+		// 	viper.Get("mysql.pwd").(string),
+		// 	viper.Get("mysql.port").(string),
+		// 	viper.Get("mysql.db").(string),
+		// 	viper.Get("mysql.key").(string),
+		// 	viper.Get("server.server_name").(string),
+		// 	viper.Get("server.go_module").(string),
+		// 	viper.Get("server.code_path").(string),
+		// 	viper.Get("server.go_version").(string),
+		// )
 		gen.Run(addr, user, pwd, port, db, table, serverName)
 	},
 }
@@ -42,7 +54,7 @@ func init() {
 	genCmd.Flags().StringVarP(&port, "port", "p", "3306", "Enter MySQL port")
 	genCmd.Flags().StringVarP(&db, "db", "d", "", "Enter MySQL database")
 	genCmd.Flags().StringVarP(&table, "table", "t", "", "Enter MySQL table")
-	genCmd.Flags().StringVarP(&goVersion, "key", "", "id", "Enter table primary key")
+	genCmd.Flags().StringVarP(&key, "key", "k", "id", "Enter table primary key")
 	genCmd.Flags().StringVarP(&serverName, "server_name", "s", "", "Enter project server name")
 	genCmd.Flags().StringVarP(&goModule, "go_module", "", "tmp", "Enter project go module name")
 	genCmd.Flags().StringVarP(&codePath, "code_path", "", "./tmp", "Enter project code generation path")

@@ -13,14 +13,12 @@ func GenDto(req GenReq) {
 	path := req.DtoDir + "/" + req.TableName + "_dto.go"
 
 	context := gstr.ReplaceByMap(TempDto, g.MapStrStr{
-		"{{findListDto}}":   genList(req),
+		"{{findListDto}}":   genList(),
 		"{{createDto}}":     genAdd(req),
 		"{{delDto}}":        genDel(req),
 		"{{updateDto}}":     genUpdate(req),
 		"{{findByIdDto}}":   genFindById(req),
 		"{{updateByIdDto}}": genFindById(req),
-		"{{findQueryDto}}":  genFindQuery(req),
-		"{{findAllDto}}":    genFindQuery(req),
 		"{{createRsp}}":     genCreateRsp(req),
 		"{{findRsp}}":       genFindRsp(req),
 	})
@@ -56,7 +54,7 @@ func genAdd(req GenReq) (columnStr string) {
 	return columnStr
 }
 
-func genList(req GenReq) (columnStr string) {
+func genList() (columnStr string) {
 	columnStr = "\t\tLimit  int `validate:\"gte=0\" form:\"limit\" json:\"limit\"`\n\t\tOffset int `form:\"offset\" json:\"offset\"`"
 
 	return columnStr
@@ -99,10 +97,6 @@ func genFindById(req GenReq) (columnStr string) {
 	}
 
 	return columnStr
-}
-
-func genFindQuery(req GenReq) (columnStr string) {
-	return "Query []*types.Query `json:\"query\"`"
 }
 
 func genCreateRsp(req GenReq) (columnStr string) {

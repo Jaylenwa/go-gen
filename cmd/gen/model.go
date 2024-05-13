@@ -34,14 +34,13 @@ type GenReq struct {
 	MysqlDir          string
 	RepositoryPoDir   string
 	RepositoryImplDir string
-	// QueryDir          string
-	DtoDir        string
-	middlewareDir string
-	DrivenDin     string
-	DriverDir     string
-	HandlerDir    string
-	RouterDir     string
-	ConcurrentMap string
+	DtoDir            string
+	middlewareDir     string
+	DrivenDin         string
+	DriverDir         string
+	HandlerDir        string
+	RouterDir         string
+	ConcurrentMap     string
 
 	TableColumns []TableColumn
 }
@@ -65,14 +64,13 @@ func GenInit(srvName, tableName string) GenReq {
 		MysqlDir:          baseDir + "/infra/db/mysql/",
 		RepositoryPoDir:   baseDir + "/infra/po/",
 		RepositoryImplDir: baseDir + "/adapter/driven/",
-		// QueryDir:          baseDir + "/infra/utils/query/",
-		middlewareDir: baseDir + "/infra/middleware/",
-		DtoDir:        baseDir + "/adapter/driver/dto/",
-		DrivenDin:     baseDir + "/port/driven",
-		DriverDir:     baseDir + "/port/driver",
-		HandlerDir:    baseDir + "/adapter/driver/handler/",
-		RouterDir:     baseDir + "/adapter/driver/",
-		ConcurrentMap: baseDir + "/infra/utils/cmap/",
-		TableColumns:  GetTableCol(tableName),
+		middlewareDir:     baseDir + "/infra/middleware/",
+		DtoDir:            baseDir + "/adapter/driver/dto/",
+		DrivenDin:         baseDir + "/port/driven",
+		DriverDir:         baseDir + "/port/driver",
+		HandlerDir:        baseDir + "/adapter/driver/handler/",
+		RouterDir:         baseDir + "/adapter/driver/",
+		ConcurrentMap:     baseDir + "/infra/utils/cmap/",
+		TableColumns:      GetTableCol(tableName),
 	}
 }

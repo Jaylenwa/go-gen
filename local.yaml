@@ -1,0 +1,25 @@
+server:
+  # 服务名称
+  # 例如表为用户表 服务名为user
+  server_name: "user"
+  # go.mod 模块名称
+  go_module: "user"
+  # 自动化代码输出目录
+  code_path: "./tmp"
+  # go 版本
+  go_version: "1.20"
+mysql:
+  # 数据库连接地址
+  addr: "127.0.0.1"
+  # 数据库端口
+  port: "3306"
+  # 数据库用户
+  user: "root"
+  # 数据库用户密码
+  pwd: "wjlroot"
+  # 数据库
+  db: "letter"
+  # 数据库表名
+  table: "user"
+  # 主键
+  key: "id"
