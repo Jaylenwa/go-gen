@@ -54,4 +54,6 @@ const TempREADME = `
     ├─driven                    # 从动端口
     └─driver                    # 驱动端口
 
+### 调用链路
+http请求 -> adapter/driver/handler -> port/driver -> domain -> port/driven/ -> adapter/driven
 `
