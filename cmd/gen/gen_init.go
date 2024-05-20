@@ -1,8 +1,9 @@
 package gen
 
 import (
-	"github.com/spf13/viper"
 	"strings"
+
+	"github.com/spf13/viper"
 
 	"github.com/gogf/gf-cli/v2/library/mlog"
 	"github.com/gogf/gf-cli/v2/library/utils"
@@ -12,11 +13,11 @@ import (
 )
 
 func GenBoot(req GenReq) {
-	context := gstr.ReplaceByMap(TempBoot, g.MapStrStr{
+	context := gstr.ReplaceByMap(TempInit, g.MapStrStr{
 		"TempImportPkg": viper.Get("server.go_module").(string),
 	})
 
-	path := req.BootDir + "/init.go"
+	path := req.InitDir + "/init.go"
 	if err := gfile.PutContents(path, strings.TrimSpace(context)); err != nil {
 		mlog.Fatalf("writing content to '%s' failed: %v", path, err)
 	} else {

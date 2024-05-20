@@ -1,11 +1,11 @@
 package gen
 
 const TempMysql = `
-package mysql
+package db
 
 import (
 	"fmt"
-	"TempImportPkg/global"
+	"TempImportPkg/init/config"
 	"log"
 	"time"
 
@@ -15,12 +15,8 @@ import (
 	"gorm.io/gorm/schema"
 )
 
-func NewDB() *gorm.DB {
-	return initDB()
-}
-
-func initDB() *gorm.DB {
-	c := global.GConfig.MySQL
+func InitDB() *gorm.DB {
+	c := config.InitConfig().MySQL
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s&parseTime=True&loc=Local", c.Username, c.Password, c.DbHost, c.DbPort, c.DbName, c.Charset)
 
 	cfg := &gorm.Config{

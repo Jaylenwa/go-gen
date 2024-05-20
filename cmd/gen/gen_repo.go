@@ -30,7 +30,7 @@ func GenRepo(req GenReq) {
 
 	context = strings.Replace(context, "total uint64", "total int64", -1)
 
-	path := req.RepositoryImplDir + "/repo_" + req.TableName + ".go"
+	path := req.RepositoryImplDir + "/" + req.TableName + ".go"
 	if err := gfile.PutContents(path, strings.TrimSpace(context)); err != nil {
 		mlog.Fatalf("writing content to '%s' failed: %v", path, err)
 	} else {

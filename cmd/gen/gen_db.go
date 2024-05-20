@@ -11,16 +11,12 @@ import (
 	"github.com/gogf/gf/v2/text/gstr"
 )
 
-func GenConfig(req GenReq) {
-	context := gstr.ReplaceByMap(TempConfig, g.MapStrStr{
-		"TempDBAddr": viper.Get("mysql.addr").(string),
-		"TempDBPort": viper.Get("mysql.port").(string),
-		"TempDBUser": viper.Get("mysql.user").(string),
-		"TempDBPwd":  viper.Get("mysql.pwd").(string),
-		"TempDBName": viper.Get("mysql.db").(string),
+func GenMysql(req GenReq) {
+	context := gstr.ReplaceByMap(TempMysql, g.MapStrStr{
+		"TempImportPkg": viper.Get("server.go_module").(string),
 	})
 
-	path := req.ConfigDir + "/config.yaml"
+	path := req.DBDir + "/mysql.go"
 	if err := gfile.PutContents(path, strings.TrimSpace(context)); err != nil {
 		mlog.Fatalf("writing content to '%s' failed: %v", path, err)
 	} else {

@@ -19,7 +19,7 @@ func GenHandler(req GenReq) {
 		"TempSvcNameCaseSnake":  GetJsonTagFromCase(req.TableName, "Snake"),      // 表名 小驼峰
 	})
 
-	path := req.HandlerDir + req.TableName + "_handler.go"
+	path := req.HandlerDir + req.TableName + ".go"
 	if err := gfile.PutContents(path, strings.TrimSpace(context)); err != nil {
 		mlog.Fatalf("writing content to '%s' failed: %v", path, err)
 	} else {

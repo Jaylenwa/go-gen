@@ -30,7 +30,7 @@ func GenPortDriver(req GenReq) {
 
 	context = strings.Replace(context, "total uint64", "total int64", -1)
 
-	path := req.BaseDir + "/port/driver/" + "svc_" + req.TableName + ".go"
+	path := req.BaseDir + "/port/driver/" + "" + req.TableName + ".go"
 	if err := gfile.PutContents(path, strings.TrimSpace(context)); err != nil {
 		mlog.Fatalf("writing content to '%s' failed: %v", path, err)
 	} else {

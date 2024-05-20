@@ -31,7 +31,7 @@ type ` + GetJsonTagFromCase(req.TableName, "Camel") + ` struct {
 	} else {
 		str = strings.Replace(str, "{{TempImports}}", "", 1)
 	}
-	path := req.EntityDir + "/" + req.TableName + "_entity.go"
+	path := req.EntityDir + "/" + req.TableName + ".go"
 	if err := gfile.PutContents(path, strings.TrimSpace(str)); err != nil {
 		mlog.Fatalf("writing content to '%s' failed: %v", path, err)
 	} else {

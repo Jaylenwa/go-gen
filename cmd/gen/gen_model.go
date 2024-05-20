@@ -45,7 +45,7 @@ type ` + GetJsonTagFromCase(req.TableName, "Camel") + ` struct {
 		str = strings.Replace(str, "{{TempImportSoftDelete}}", "", 1)
 	}
 
-	path := req.RepositoryPoDir + "/" + req.TableName + "_po.go"
+	path := req.RepositoryPoDir + "/" + req.TableName + ".go"
 	if err := gfile.PutContents(path, strings.TrimSpace(str)); err != nil {
 		mlog.Fatalf("writing content to '%s' failed: %v", path, err)
 	} else {

@@ -8,7 +8,7 @@ import (
 	"TempImportPkg/infra/po"
 )
 
-//go:generate mockgen -source=./repo_TempSvcNameCaseSnake.go -destination ./mock/repo_TempSvcNameCaseSnake.go -package mock
+//go:generate mockgen -source=./TempSvcNameCaseSnake.go -destination ./mock/TempSvcNameCaseSnake.go -package mock
 type TempSvcNameCaseCamelRepo interface {
 	FindById(ctx context.Context, id int64) (res po.TempSvcNameCaseCamel, err error)
 	FindByQuery(ctx context.Context, filter map[string]interface{}, args ...interface{}) (res po.TempSvcNameCaseCamel, err error)
@@ -18,5 +18,4 @@ type TempSvcNameCaseCamelRepo interface {
 	Update(ctx context.Context, id int64, res po.TempSvcNameCaseCamel) (err error)
 	Delete(ctx context.Context, id int64) (err error)
 }
-
 `

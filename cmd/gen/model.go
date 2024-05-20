@@ -24,25 +24,30 @@ type GenReq struct {
 	SrvName           string
 	TableKey          string
 	BaseDir           string
-	BootDir           string
+	InitDir           string
 	EntityDir         string
 	ServiceDir        string
 	GlobalDir         string
 	InfraDir          string
 	ConfigDir         string
-	ConstDir          string
-	MysqlDir          string
+	EnumsDir          string
+	DBDir             string
+	LogDir            string
 	RepositoryPoDir   string
 	RepositoryImplDir string
 	DtoDir            string
 	middlewareDir     string
-	DrivenDin         string
+	DrivenDir         string
 	DriverDir         string
 	HandlerDir        string
 	RouterDir         string
-	ConcurrentMap     string
-
-	TableColumns []TableColumn
+	ManifestDir       string
+	I18nDir           string
+	InitConfigDir     string
+	RequestDir        string
+	ResponseDir       string
+	UtilsDir          string
+	TableColumns      []TableColumn
 }
 
 func GenInit(srvName, tableName string) GenReq {
@@ -54,23 +59,29 @@ func GenInit(srvName, tableName string) GenReq {
 		TableName:         tableName,
 		TableKey:          viper.Get("mysql.key").(string),
 		SrvName:           srvName,
-		BootDir:           baseDir + "/boot/",
+		InitDir:           baseDir + "/init/",
 		EntityDir:         baseDir + "/domain/entity/",
 		ServiceDir:        baseDir + "/domain/service/",
 		GlobalDir:         baseDir + "/global/",
 		InfraDir:          baseDir + "/infra",
-		ConfigDir:         baseDir + "/infra/config/",
-		ConstDir:          baseDir + "/infra/const/",
-		MysqlDir:          baseDir + "/infra/db/mysql/",
+		InitConfigDir:     baseDir + "/init/config/",
+		EnumsDir:          baseDir + "/infra/enums/",
+		DBDir:             baseDir + "/init/db/",
+		LogDir:            baseDir + "/init/log/",
 		RepositoryPoDir:   baseDir + "/infra/po/",
 		RepositoryImplDir: baseDir + "/adapter/driven/",
 		middlewareDir:     baseDir + "/infra/middleware/",
 		DtoDir:            baseDir + "/adapter/driver/dto/",
-		DrivenDin:         baseDir + "/port/driven",
+		DrivenDir:         baseDir + "/port/driven",
 		DriverDir:         baseDir + "/port/driver",
 		HandlerDir:        baseDir + "/adapter/driver/handler/",
-		RouterDir:         baseDir + "/adapter/driver/",
-		ConcurrentMap:     baseDir + "/infra/utils/cmap/",
+		RouterDir:         baseDir + "/adapter/driver/router/",
+		ManifestDir:       baseDir + "/manifest/",
+		I18nDir:           baseDir + "/manifest/i18n/",
+		ConfigDir:         baseDir + "/manifest/config/",
+		RequestDir:        baseDir + "/adapter/driver/dto/request/",
+		ResponseDir:       baseDir + "/adapter/driver/dto/response/",
+		UtilsDir:          baseDir + "/infra/utils/",
 		TableColumns:      GetTableCol(tableName),
 	}
 }

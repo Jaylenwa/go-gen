@@ -4,14 +4,14 @@ const TempGlobal = `
 package global
 
 import (
-	"TempImportPkg/infra/config"
+	"TempImportPkg/init/config"
+	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
 
 var (
-	GConfig *config.Config // 全局配置
-	GDB     *gorm.DB       // 全局 DB
+	DB     *gorm.DB
+	Config *config.Config
+	Log    *logrus.Logger
 )
-
-
 `

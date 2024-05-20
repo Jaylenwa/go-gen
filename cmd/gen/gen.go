@@ -31,7 +31,9 @@ func Run(host, user, password, port, db, table, serverName string) {
 
 	GenGlobal(genReq)
 
-	GenDto(genReq)
+	GenRequest(genReq)
+
+	GenResponse(genReq)
 
 	GenPortDriver(genReq)
 
@@ -58,20 +60,24 @@ func Run(host, user, password, port, db, table, serverName string) {
 
 // CreateDir 创建需要的文件夹
 func CreateDir(req GenReq) {
-	_ = os.MkdirAll(req.BootDir, os.ModePerm)
+	_ = os.MkdirAll(req.InitDir, os.ModePerm)
 	_ = os.MkdirAll(req.EntityDir, os.ModePerm)
 	_ = os.MkdirAll(req.ServiceDir, os.ModePerm)
 	_ = os.MkdirAll(req.GlobalDir, os.ModePerm)
 	_ = os.MkdirAll(req.ConfigDir, os.ModePerm)
-	_ = os.MkdirAll(req.ConstDir, os.ModePerm)
-	_ = os.MkdirAll(req.MysqlDir, os.ModePerm)
+	_ = os.MkdirAll(req.EnumsDir, os.ModePerm)
+	_ = os.MkdirAll(req.DBDir, os.ModePerm)
+	_ = os.MkdirAll(req.LogDir, os.ModePerm)
 	_ = os.MkdirAll(req.RepositoryPoDir, os.ModePerm)
 	_ = os.MkdirAll(req.RepositoryImplDir, os.ModePerm)
-	// _ = os.MkdirAll(req.QueryDir, os.ModePerm)
 	_ = os.MkdirAll(req.DtoDir, os.ModePerm)
 	_ = os.MkdirAll(req.middlewareDir, os.ModePerm)
 	_ = os.MkdirAll(req.DriverDir, os.ModePerm)
-	_ = os.MkdirAll(req.DrivenDin, os.ModePerm)
-	_ = os.MkdirAll(req.ConcurrentMap, os.ModePerm)
-
+	_ = os.MkdirAll(req.DrivenDir, os.ModePerm)
+	_ = os.MkdirAll(req.ManifestDir, os.ModePerm)
+	_ = os.MkdirAll(req.InitConfigDir, os.ModePerm)
+	_ = os.MkdirAll(req.I18nDir, os.ModePerm)
+	_ = os.MkdirAll(req.RequestDir, os.ModePerm)
+	_ = os.MkdirAll(req.ResponseDir, os.ModePerm)
+	_ = os.MkdirAll(req.UtilsDir, os.ModePerm)
 }

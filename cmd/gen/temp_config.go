@@ -14,5 +14,4 @@ mysql:
   max_open_conns: 50
   max_idle_conns: 10
   conn_max_lifetime: 500
-
 `

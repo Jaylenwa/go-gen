@@ -1,23 +1,48 @@
 package gen
 
 import (
+	"strings"
+
 	"github.com/gogf/gf-cli/v2/library/mlog"
 	"github.com/gogf/gf-cli/v2/library/utils"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/text/gstr"
-	"strings"
 )
 
-func GenDto(req GenReq) {
-	path := req.DtoDir + "/" + req.TableName + "_dto.go"
+func GenRequest(req GenReq) {
+	path := req.RequestDir + "/" + req.TableName + ".go"
 
-	context := gstr.ReplaceByMap(TempDto, g.MapStrStr{
-		"{{findListDto}}":   genList(),
-		"{{createDto}}":     genAdd(req),
-		"{{delDto}}":        genDel(req),
-		"{{updateDto}}":     genUpdate(req),
-		"{{findByIdDto}}":   genFindById(req),
+	context := gstr.ReplaceByMap(TempRequest, g.MapStrStr{
+		"{{findListDto}}": genList(),
+		"{{createDto}}":   genAdd(req),
+		"{{delDto}}":      genDel(req),
+		"{{updateDto}}":   genUpdate(req),
+		"{{findByIdDto}}": genFindById(req),
+	})
+
+	context2 := gstr.ReplaceByMap(context, g.MapStrStr{
+		"TempSvcNameCaseCamel": GetJsonTagFromCase(req.TableName, "Camel"),
+	})
+
+	if strings.Contains(context2, "time.Time") {
+		context2 = strings.Replace(context2, "{{TempImports}}", "import \"time\"", 1)
+	} else {
+		context2 = strings.Replace(context2, "{{TempImports}}", "", 1)
+	}
+
+	if err := gfile.PutContents(path, strings.TrimSpace(context2)); err != nil {
+		mlog.Fatalf("writing content to '%s' failed: %v", path, err)
+	} else {
+		utils.GoFmt(path)
+		mlog.Print("generated:", path)
+	}
+}
+
+func GenResponse(req GenReq) {
+	path := req.ResponseDir + "/" + req.TableName + ".go"
+
+	context := gstr.ReplaceByMap(TempResponse, g.MapStrStr{
 		"{{updateByIdDto}}": genFindById(req),
 		"{{createRsp}}":     genCreateRsp(req),
 		"{{findRsp}}":       genFindRsp(req),

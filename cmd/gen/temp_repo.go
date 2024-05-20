@@ -26,7 +26,7 @@ var _ portDriven.TempSvcNameCaseCamelRepo = &TempSvcNameCamelLowerRepo{}
 func NewTempSvcNameCaseCamelRepo() portDriven.TempSvcNameCaseCamelRepo {
 	TempSvcNameCamelLowerRepoOnce.Do(func() {
 		TempSvcNameCamelLowerRepoImpl = &TempSvcNameCamelLowerRepo{
-			db: global.GDB,
+			db: global.DB,
 		}
 	})
 	return TempSvcNameCamelLowerRepoImpl
@@ -122,6 +122,4 @@ func (repo *TempSvcNameCamelLowerRepo) Delete(ctx context.Context, id int64) (er
 	err = tx.Where("id = ?", id).Delete(&po.TempSvcNameCaseCamel{}).Error
 	return
 }
-
-
 `
