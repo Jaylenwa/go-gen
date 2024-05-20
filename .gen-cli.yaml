@@ -1,7 +1,4 @@
 server:
-  # 服务名称
-  # 例如表为用户表 服务名为user
-  server_name: "test"
   # go.mod 模块名称
   go_module: "test"
   # 自动化代码输出目录

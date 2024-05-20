@@ -21,7 +21,6 @@ type TableColumn struct {
 
 type GenReq struct {
 	TableName         string
-	SrvName           string
 	TableKey          string
 	BaseDir           string
 	InitDir           string
@@ -50,7 +49,7 @@ type GenReq struct {
 	TableColumns      []TableColumn
 }
 
-func GenInit(srvName, tableName string) GenReq {
+func GenInit(tableName string) GenReq {
 	codePath := viper.Get("server.code_path").(string)
 	baseDir := codePath + "/" + viper.Get("server.go_module").(string)
 
@@ -58,7 +57,6 @@ func GenInit(srvName, tableName string) GenReq {
 		BaseDir:           baseDir,
 		TableName:         tableName,
 		TableKey:          viper.Get("mysql.key").(string),
-		SrvName:           srvName,
 		InitDir:           baseDir + "/init/",
 		EntityDir:         baseDir + "/domain/entity/",
 		ServiceDir:        baseDir + "/domain/service/",

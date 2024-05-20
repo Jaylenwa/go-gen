@@ -7,11 +7,11 @@ import (
 	"github.com/gogf/gf-cli/v2/library/mlog"
 )
 
-func Run(host, user, password, port, db, table, serverName string) {
+func Run(host, user, password, port, db, table string) {
 	// 1. 获取表完整结构信息
 	InitDB(host, port, user, password, db)
 
-	genReq := GenInit(serverName, table)
+	genReq := GenInit(table)
 
 	mlog.Print("auto gen code start...")
 

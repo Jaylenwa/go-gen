@@ -5,9 +5,20 @@
 
 **前置条件说明**
 
-方法1，方法2；需要配置`.gen-cli.yaml`方可使用
+方法1，方法2；需要结合配置文件使用
 
 方法3（命令行模式）无需配置
+
+配置文件生成方式：
+1. 源代码中的.gen-cli.yaml
+2. 可执行文件自动生成，执行后生成.gen-cli.yaml
+```shell
+# 方式1
+go run main.go config
+# 方式2
+# go build后 执行
+[可执行文件] config
+```
 
 配置内容见文件注释
 
@@ -32,6 +43,6 @@ go run main.go gen --config .gen-cli.yaml
 
 使用案例：
 ```shell
-[可执行文件名] gen -a 127.0.0.1 -u root --pwd root -p 3306 -d dbName -t tableName -s serverName
+[可执行文件名] gen -a 127.0.0.1 -u root --pwd root -p 3306 -d dbName -t tableName -m go_module
 ```
 还有额外参数可以配置，使用`[可执行文件名] gen --help`命令查看 按需填写
