@@ -65,7 +65,7 @@ func GenInit(srvName, tableName string) GenReq {
 		GlobalDir:         baseDir + "/global/",
 		InfraDir:          baseDir + "/infra",
 		InitConfigDir:     baseDir + "/init/config/",
-		EnumsDir:          baseDir + "/infra/enums/",
+		EnumsDir:          baseDir + "/domain/enums/",
 		DBDir:             baseDir + "/init/db/",
 		LogDir:            baseDir + "/init/log/",
 		RepositoryPoDir:   baseDir + "/infra/po/",

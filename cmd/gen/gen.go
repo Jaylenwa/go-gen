@@ -47,6 +47,8 @@ func Run(host, user, password, port, db, table, serverName string) {
 
 	GenRepo(genReq)
 
+	GenREADME(genReq)
+
 	GenConfig(genReq)
 
 	// 自动化文档
