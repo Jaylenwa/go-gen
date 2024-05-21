@@ -51,7 +51,7 @@ func (h *TempSvcNameCamelLowerHttpHandler) findTempSvcNameCaseCamelById(c *gin.C
 
 	res, err := h.TempSvcNameCamelLowerService.FindTempSvcNameCaseCamelById(c, req.Id)
 	if err != nil {
-		_ = c.AbortWithError(http.StatusBadRequest, err)
+		_ = c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
 
@@ -81,7 +81,7 @@ func (h *TempSvcNameCamelLowerHttpHandler) findTempSvcNameCaseCamelList(c *gin.C
 
 	total, res, err := h.TempSvcNameCamelLowerService.FindTempSvcNameCaseCamelList(c, filter)
 	if err != nil {
-		_ = c.AbortWithError(http.StatusBadRequest, err)
+		_ = c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
 
@@ -101,7 +101,7 @@ func (h *TempSvcNameCamelLowerHttpHandler) createTempSvcNameCaseCamel(c *gin.Con
 
 	id, err := h.TempSvcNameCamelLowerService.CreateTempSvcNameCaseCamel(c, req)
 	if err != nil {
-		_ = c.AbortWithError(http.StatusBadRequest, err)
+		_ = c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
 
@@ -125,7 +125,7 @@ func (h *TempSvcNameCamelLowerHttpHandler) updateTempSvcNameCaseCamel(c *gin.Con
 
 	err := h.TempSvcNameCamelLowerService.UpdateTempSvcNameCaseCamel(c, req.Id, req)
 	if err != nil {
-		_ = c.AbortWithError(http.StatusBadRequest, err)
+		_ = c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
 
@@ -142,7 +142,7 @@ func (h *TempSvcNameCamelLowerHttpHandler) delTempSvcNameCaseCamel(c *gin.Contex
 
 	err := h.TempSvcNameCamelLowerService.DelTempSvcNameCaseCamel(c, req.Id)
 	if err != nil {
-		_ = c.AbortWithError(http.StatusBadRequest, err)
+		_ = c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
 
