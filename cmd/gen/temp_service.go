@@ -5,7 +5,7 @@ package service
 
 import (
 	"context"
-	"TempImportPkg/adapter/driven"
+	adapterDriven "TempImportPkg/adapter/driven"
 	"TempImportPkg/adapter/driver/dto/request"
 	"TempImportPkg/adapter/driver/dto/response"
 	"TempImportPkg/infra/po"

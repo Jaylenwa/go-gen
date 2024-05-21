@@ -51,6 +51,10 @@ func Run(host, user, password, port, db, table string) {
 
 	GenConfig(genReq)
 
+	GenDBCommon(genReq)
+
+	GenTransaction(genReq)
+
 	// 自动化文档
 	//GenApiDoc(genReq)
 
@@ -82,4 +86,5 @@ func CreateDir(req GenReq) {
 	_ = os.MkdirAll(req.RequestDir, os.ModePerm)
 	_ = os.MkdirAll(req.ResponseDir, os.ModePerm)
 	_ = os.MkdirAll(req.UtilsDir, os.ModePerm)
+	_ = os.MkdirAll(req.TransactionDir, os.ModePerm)
 }

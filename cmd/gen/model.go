@@ -46,6 +46,7 @@ type GenReq struct {
 	RequestDir        string
 	ResponseDir       string
 	UtilsDir          string
+	TransactionDir    string
 	TableColumns      []TableColumn
 }
 
@@ -80,6 +81,7 @@ func GenInit(tableName string) GenReq {
 		RequestDir:        baseDir + "/adapter/driver/dto/request/",
 		ResponseDir:       baseDir + "/adapter/driver/dto/response/",
 		UtilsDir:          baseDir + "/infra/utils/",
+		TransactionDir:    baseDir + "/infra/transaction/",
 		TableColumns:      GetTableCol(tableName),
 	}
 }
