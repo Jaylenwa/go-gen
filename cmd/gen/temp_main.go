@@ -26,7 +26,7 @@ type Server struct {
 var server = &Server{
 	// handler注册到路由组
 	defaultGroup: []router.CommonRouter{
-		handler.NewHttpUserHandler(),
+		handler.NewHttpTempSvcNameCaseCamelHandler(),
 	},
 }
 
