@@ -167,7 +167,7 @@ func generateStructFieldForDto(field TableColumn) (colStr string) {
 		node = " // " + field.Comment
 	}
 
-	colStr = fieldName + "    " + typeName + "    " + "`" + " " + jsonTag + "`" + node
+	colStr = fieldName + "    " + typeName + "    " + "`" + jsonTag + "`" + node
 
 	return
 }
@@ -192,7 +192,7 @@ func generateStructFieldForDtoReq(field TableColumn) (colStr string) {
 		node = " // " + field.Comment
 	}
 
-	colStr = fieldName + "    " + typeName + "    " + "`" + " " + jsonTag + "`" + node
+	colStr = fieldName + "    " + typeName + "    " + "`" + jsonTag + "`" + node
 
 	return
 }
